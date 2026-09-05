@@ -1,0 +1,9 @@
+name: TheWitheringVillage
+version: 1.0.0
+main: dirtshack.mc.thewitheringvillage.TheWitheringVillage
+api-version: '26.2'
+
+commands:
+  village:
+    description: Main command for The Withering Village
+    usage: /village
