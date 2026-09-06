@@ -55,7 +55,7 @@ and cleared when the plugin disables; they are not restored after reconnects
 or server restarts. Named removal, text updates, and delivery progress handling
 are still unfinished.
 
-## Hackathon development time
+## development time
 
 Approximately **4 hours 30 minutes** have been spent on the project so far:
 
