@@ -23,7 +23,7 @@ import java.util.*;
 public final class WaypointManager implements  Listener {
 
     private final JavaPlugin plugin;
-    private final Map<UUID, WaypointDisplay> markers = new HashMap<>();
+    private final Map<UUID, Map<String, WaypointDisplay>> markers = new HashMap<>();
 
     public WaypointManager(JavaPlugin plugin) {
         this.plugin = plugin;
@@ -99,7 +99,32 @@ public final class WaypointManager implements  Listener {
         );
         player.showEntity(plugin, marker);
         player.showEntity(plugin, markerOuter);
-        markers.put(player.getUniqueId(), new WaypointDisplay(Name, marker, markerOuter, markerText));
+
+        markers.computeIfAbsent(player.getUniqueId(), ignored -> new HashMap<>()
+        ).put(
+                normalizeName(Name),
+                new WaypointDisplay(
+                        Name,
+                        marker,
+                        markerOuter,
+                        markerText)
+        );
+    }
+
+    public WaypointDisplay get(Player player, String name){
+        Map<String, WaypointDisplay> playerMarkers = markers.get(player.getUniqueId());
+
+        if (playerMarkers == null){
+            return null;
+        }
+        return playerMarkers.get(name);
+    }
+
+    public boolean setText(Player player, String name, String WPText){
+        WaypointDisplay waypoint = get(player, name);
+
+
+
     }
 
     public void remove (Player player){
@@ -138,4 +163,8 @@ public final class WaypointManager implements  Listener {
         remove(event.getPlayer());
     }
 
+
+    private String normalizeName(String name) {
+        return name.toLowerCase(Locale.ROOT);
+    }
 }
