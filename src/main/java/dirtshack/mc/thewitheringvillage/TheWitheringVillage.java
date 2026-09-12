@@ -15,7 +15,7 @@ public final class TheWitheringVillage extends JavaPlugin {
         CommandManager commands = new CommandManager(this, "village");
 
         commands.register(new WaypointCommand(waypointManager));
-        getLogger().info("Hello world");
+        getLogger().info("Initializing The Withering Village Plugin");
     }
 
     @Override
